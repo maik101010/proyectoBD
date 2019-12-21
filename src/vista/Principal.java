@@ -10,7 +10,7 @@ import modelo.Persona;
  * @author megarcia
  */
 public class Principal {
-
+//mal programador
     public static void main(String[] args) {
         Persona persona = new Persona();
         PersonaControlador controlador = new PersonaControlador();
