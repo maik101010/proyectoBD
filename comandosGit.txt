@@ -1,0 +1,8 @@
+git status -- Ver el estado de los cambios
+git add . -- agregar los cambios 
+git commit -m "mi comentario" -- realizar la confirmaciòn de los cambios
+git push origin rama -- actualizar la rama repositorio remoto
+git pull origin rama --descargar cambios de rama repotirorio remoto
+git checkout rama -- pasarse de una rama a otra
+git checkout -b rama --crear una rama y pasarse a ella
+
