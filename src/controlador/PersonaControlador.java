@@ -55,15 +55,45 @@ public class PersonaControlador {
             Logger.getLogger(PersonaControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public int insertarPersona(final Persona persona){
+
+    public int insertarPersona(final Persona persona) {
         String script = "INSERT INTO persona(id, nombre, edad) VALUES (?, ?, ?);";
-        int resultado=0;
+        int resultado = 0;
         try {
             PreparedStatement preparedStatement = conexion.obtenerConexion().prepareStatement(script);
             preparedStatement.setInt(1, persona.getId());
             preparedStatement.setString(2, persona.getNombre());
             preparedStatement.setInt(3, persona.getEdad());
+            resultado = preparedStatement.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PersonaControlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return resultado;
+    }
+
+    public int eliminarPersona(int idPersona) {
+        String script = "DELETE FROM persona WHERE id = ?";
+        int resultado = 0;
+        try {
+            PreparedStatement preparedStatement = conexion.obtenerConexion().prepareStatement(script);
+            preparedStatement.setInt(1, idPersona);
+            resultado = preparedStatement.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PersonaControlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return resultado;
+    }
+    
+    public int actualizarPersona(Persona persona){
+         String script = "UPDATE persona SET nombre = ?, edad=? WHERE id = ?";
+        int resultado=0;
+        try {
+            PreparedStatement preparedStatement = conexion.obtenerConexion().prepareStatement(script);
+            preparedStatement.setString(1, persona.getNombre());
+            preparedStatement.setInt(2, persona.getEdad());
+            preparedStatement.setInt(3, persona.getId());
             resultado = preparedStatement.executeUpdate();
             
         } catch (SQLException ex) {
@@ -71,6 +101,7 @@ public class PersonaControlador {
         }
         return resultado;
     }
+    
 
 //    public static void main(String[] args) {
 //        PersonaControlador controlador = new PersonaControlador();
@@ -79,5 +110,4 @@ public class PersonaControlador {
 //            System.out.println(persona.getNombre());
 //        }
 //    }
-
 }
