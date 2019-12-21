@@ -12,6 +12,7 @@ import modelo.Persona;
 public class Principal {
 //mal programador
     //Efectivamente es un mal programador
+    //cambio rama desarrollo
     public static void main(String[] args) {
         Persona persona = new Persona();
         PersonaControlador controlador = new PersonaControlador();
