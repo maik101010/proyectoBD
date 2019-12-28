@@ -110,4 +110,21 @@ public class PersonaControlador {
 //            System.out.println(persona.getNombre());
 //        }
 //    }
-}
+///        List<Persona> listaRetornada = controlador.listaPersonas();
+//        for (Persona persona : listaRetornada) {
+//            System.out.println(persona.getNombre());
+//        }
+//    }
+///        List<Persona> listaRetornada = controlador.listaPersonas();
+//        for (Persona persona : listaRetornada) {
+//            System.out.println(persona.getNombre());
+//        }
+//    }
+
+//asdasdasdasd
+
+//asdasdasdasd
+
+//asdasdasdasd
+
+//asdas dasdasdasd}
