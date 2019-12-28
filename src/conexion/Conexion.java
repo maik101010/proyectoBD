@@ -13,7 +13,8 @@ public class Conexion {
     private final String db = "db_test";
     private final String url = "jdbc:mysql://localhost/" + db;
     private final String user = "root";
-    private final String pass = "root";
+    //private final String pass = "root";
+    private final String pass = "";
 
     public Connection obtenerConexion() {
         Connection conexion = null;

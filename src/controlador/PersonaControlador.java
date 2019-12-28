@@ -15,12 +15,13 @@ import modelo.Persona;
  *
  * @author megarcia
  */
-public class PersonaControlador {
+public class PersonaControlador implements GenericInterfaz {
 
     private Conexion conexion = new Conexion();
     private Persona persona;
 
-    public List<Persona> listaPersonas() {
+    @Override
+    public List<Persona> listar() {
         List<Persona> listaPersona = new ArrayList<>();
         try {
             String script = "SELECT * FROM persona;";
@@ -56,11 +57,13 @@ public class PersonaControlador {
             Logger.getLogger(PersonaControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public int insertarPersona(final Persona persona) {
+
+    @Override
+    public int insertar(final Object personaObject) {
         String script = "INSERT INTO persona(id, nombre, edad) VALUES (?, ?, ?);";
         int resultado = 0;
         try {
+            persona = (Persona) personaObject;
             PreparedStatement preparedStatement = conexion.obtenerConexion().prepareStatement(script);
             preparedStatement.setInt(1, persona.getId());
             preparedStatement.setString(2, persona.getNombre());
@@ -73,7 +76,8 @@ public class PersonaControlador {
         return resultado;
     }
 
-    public int eliminarPersona(int idPersona) {
+    @Override
+    public int eliminar(int idPersona) {
         String script = "DELETE FROM persona WHERE id = ?";
         int resultado = 0;
         try {
@@ -86,23 +90,24 @@ public class PersonaControlador {
         }
         return resultado;
     }
-    
-    public int actualizarPersona(Persona persona){
-         String script = "UPDATE persona SET nombre = ?, edad=? WHERE id = ?";
-        int resultado=0;
+
+    @Override
+    public int actualizar(final Object personaObject) {
+        String script = "UPDATE persona SET nombre = ?, edad=? WHERE id = ?";
+        int resultado = 0;
         try {
+            persona = (Persona) personaObject;
             PreparedStatement preparedStatement = conexion.obtenerConexion().prepareStatement(script);
             preparedStatement.setString(1, persona.getNombre());
             preparedStatement.setInt(2, persona.getEdad());
             preparedStatement.setInt(3, persona.getId());
             resultado = preparedStatement.executeUpdate();
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(PersonaControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
         return resultado;
     }
-    
 
 //    public static void main(String[] args) {
 //        PersonaControlador controlador = new PersonaControlador();
