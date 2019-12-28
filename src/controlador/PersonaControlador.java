@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import modelo.Persona;
 
 /**
@@ -55,7 +56,7 @@ public class PersonaControlador {
             Logger.getLogger(PersonaControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     public int insertarPersona(final Persona persona) {
         String script = "INSERT INTO persona(id, nombre, edad) VALUES (?, ?, ?);";
         int resultado = 0;
@@ -109,5 +110,23 @@ public class PersonaControlador {
 //        for (Persona persona : listaRetornada) {
 //            System.out.println(persona.getNombre());
 //        }
+//    }
+//    public List<Persona> listaPersonasMenores() {
+//        List<Persona> listaPersona = new ArrayList<>();
+//        try {
+//            String script = "SELECT * FROM persona;";
+//            PreparedStatement preparedStatement = conexion.obtenerConexion().prepareStatement(script);
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//            while (resultSet.next()) {
+//                persona = new Persona();
+//                persona.setId(resultSet.getInt("id"));
+//                persona.setNombre(resultSet.getString("nombre"));
+//                persona.setEdad(resultSet.getInt("edad"));
+//                listaPersona.add(persona);
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(PersonaControlador.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return listaPersona.stream().filter(personaFiltro -> personaFiltro.getEdad()<18).collect(Collectors.toList());
 //    }
 }
